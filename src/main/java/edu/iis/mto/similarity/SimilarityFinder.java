@@ -5,7 +5,7 @@ import edu.iis.mto.search.SequenceSearcher;
 public class SimilarityFinder {
 
     private SequenceSearcher searcher;
-
+    public int searcherCallCount;
     public SimilarityFinder(SequenceSearcher searcher) {
         this.searcher = searcher;
     }
@@ -14,7 +14,7 @@ public class SimilarityFinder {
         if (seq1.length == 0 && seq2.length == 0) {
             return 1.0d;
         }
-
+        searcherCallCount = seq1.length;
         int intersectSize = calculateIntersect(seq1, seq2);
         int unionSize = seq1.length + seq2.length - intersectSize;
 
