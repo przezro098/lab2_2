@@ -3,7 +3,7 @@ package edu.iis.mto.search;
 public class SequenceSearcherExample implements SequenceSearcher {
 
     @Override public SearchResult search(int elem, int[] seq) {
-        if(seq == null) throw new IllegalArgumentException();
+        if(seq == null) throw new NullPointerException();
 
         SearchResult.Builder builder = SearchResult.builder();
         builder.withFound(false);
