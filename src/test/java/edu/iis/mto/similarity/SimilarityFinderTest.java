@@ -35,6 +35,17 @@ class SimilarityFinderTest {
         Assertions.assertEquals(1.0, result);
     }
 
+    @Test
+    void CheckingSingleDifferentElementSequence() {
+        firstSequence = new int[]{1};
+        secondSequence = new int[]{2};
+
+        result = similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence);
+
+        Assertions.assertEquals(0.0, result);
+    }
+
+
 
 
 }
