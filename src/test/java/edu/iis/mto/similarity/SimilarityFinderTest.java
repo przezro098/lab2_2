@@ -71,6 +71,17 @@ class SimilarityFinderTest {
         Assertions.assertThrows(NullPointerException.class, () -> similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence));
     }
 
+    @Test
+    void CheckingCountOfCallSearchMethod() {
+        firstSequence = new int[]{1,2,3};
+        secondSequence = new int[]{2,3,4};
+
+        result = similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence);
+
+        Assertions.assertTrue(similarityFinder.searcherCallCount == 3);
+    }
+
+
 
 
 
