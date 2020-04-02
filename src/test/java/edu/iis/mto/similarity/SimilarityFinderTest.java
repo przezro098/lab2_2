@@ -45,6 +45,15 @@ class SimilarityFinderTest {
         Assertions.assertEquals(0.0, result);
     }
 
+    @Test
+    void CheckingNullSequences() {
+        firstSequence = null;
+        secondSequence = null;
+
+        Assertions.assertThrows(NullPointerException.class, () -> similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence));
+    }
+
+
 
 
 
