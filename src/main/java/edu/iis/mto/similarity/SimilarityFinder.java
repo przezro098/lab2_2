@@ -6,6 +6,7 @@ public class SimilarityFinder {
 
     private SequenceSearcher searcher;
     public int searcherCallCount;
+
     public SimilarityFinder(SequenceSearcher searcher) {
         this.searcher = searcher;
     }
@@ -24,8 +25,7 @@ public class SimilarityFinder {
     private int calculateIntersect(int[] seq1, int[] seq2) {
         int intersectSize = 0;
         for (int elem : seq1) {
-            if (searcher.search(elem, seq2)
-                        .isFound()) {
+            if (searcher.search(elem, seq2).isFound()) {
                 intersectSize++;
             }
         }
