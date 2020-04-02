@@ -23,9 +23,18 @@ class SimilarityFinderTest {
         result = similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence);
 
         Assertions.assertEquals(1.0, result);
-
-
     }
+
+    @Test
+    void CheckingBothSingleSameElemenetSequence() {
+        firstSequence = new int[]{1};
+        secondSequence = new int[]{1};
+
+        result = similarityFinder.calculateJackardSimilarity(firstSequence,secondSequence);
+
+        Assertions.assertEquals(1.0, result);
+    }
+
 
 
 }
