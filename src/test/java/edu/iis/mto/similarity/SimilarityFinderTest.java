@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SimilarityFinderTest {
 
-    private SequenceSearcher sequenceSearcher = new SequenceSearcherExample();
+    private SequenceSearcherExample sequenceSearcher = new SequenceSearcherExample();
     private SimilarityFinder similarityFinder = new SimilarityFinder(sequenceSearcher);
     private int[] firstSequence;
     private int[] secondSequence;
@@ -18,7 +18,7 @@ class SimilarityFinderTest {
     @Test void CheckingBothEmptySequence() {
         firstSequence = new int[] {};
         secondSequence = new int[] {};
-
+        sequenceSearcher.setPosition(secondSequence);
         result = similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence);
 
         Assertions.assertEquals(1.0, result);
@@ -27,7 +27,7 @@ class SimilarityFinderTest {
     @Test void CheckingBothSingleSameElemenetSequence() {
         firstSequence = new int[] {1};
         secondSequence = new int[] {1};
-
+        sequenceSearcher.setPosition(secondSequence);
         result = similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence);
 
         Assertions.assertEquals(1.0, result);
@@ -36,7 +36,7 @@ class SimilarityFinderTest {
     @Test void CheckingSingleDifferentElementSequence() {
         firstSequence = new int[] {1};
         secondSequence = new int[] {2};
-
+        sequenceSearcher.setPosition(secondSequence);
         result = similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence);
 
         Assertions.assertEquals(0.0, result);
@@ -45,7 +45,7 @@ class SimilarityFinderTest {
     @Test void CheckingNullSequences() {
         firstSequence = null;
         secondSequence = null;
-
+        sequenceSearcher.setPosition(secondSequence);
         Assertions.assertThrows(NullPointerException.class,
                 () -> similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence));
     }
@@ -53,7 +53,7 @@ class SimilarityFinderTest {
     @Test void CheckingHalfSimilarSequence() {
         firstSequence = new int[] {1, 2, 3};
         secondSequence = new int[] {2, 3, 4};
-
+        sequenceSearcher.setPosition(secondSequence);
         result = similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence);
 
         Assertions.assertEquals(0.5, result);
@@ -61,9 +61,8 @@ class SimilarityFinderTest {
 
     @Test void CheckingSingleNullSequences() {
         firstSequence = new int[] {1, 2, 3};
-        ;
         secondSequence = null;
-
+        sequenceSearcher.setPosition(secondSequence);
         Assertions.assertThrows(NullPointerException.class,
                 () -> similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence));
     }
@@ -71,7 +70,7 @@ class SimilarityFinderTest {
     @Test void CheckingCountOfCallSearchMethod() {
         firstSequence = new int[] {1, 2, 3};
         secondSequence = new int[] {2, 3, 4};
-
+        sequenceSearcher.setPosition(secondSequence);
         result = similarityFinder.calculateJackardSimilarity(firstSequence, secondSequence);
 
         Assertions.assertTrue(similarityFinder.searcherCallCount == 3);
