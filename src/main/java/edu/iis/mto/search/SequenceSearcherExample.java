@@ -1,24 +1,34 @@
 package edu.iis.mto.search;
 
+import java.util.HashMap;
+
 public class SequenceSearcherExample implements SequenceSearcher {
 
-    @Override public SearchResult search(int elem, int[] seq) {
-        if (seq == null)
+    private HashMap<Integer, Integer> seqPositions = new HashMap<>();
+
+    public void setPosition(int [] elem) {
+        if (elem == null) return;
+        else {
+            for (int i = 0; i < elem.length; i++) {
+                this.seqPositions.put(elem[i], i);
+            }
+        }
+    }
+
+    @Override
+    public SearchResult search(int elem, int[] seq) {
+
+        if (seq == null) {
             throw new NullPointerException();
+        }
 
         SearchResult.Builder builder = SearchResult.builder();
         builder.withFound(false);
-        builder.withPosition(-1);
-        for (int i = 0; i < seq.length; i++) {
-            if (seq[i] == elem) {
-                builder.withFound(true);
-                builder.withPosition(i);
-                break;
-            }
 
+        if (this.seqPositions.containsKey(elem)) {
+            builder.withFound(true);
+            builder.withPosition(this.seqPositions.get(elem));
         }
-
         return builder.build();
-
     }
 }
